@@ -14,7 +14,11 @@ spl_autoload_register(function($className) {
     } elseif (strpos($className, 'Zend_') === 0) {
         include __DIR__ . '/vendor/zf1/' . $file;
     } elseif (strpos($className, 'FXMLRPC\\') === 0) {
-        include __DIR__ . '/src/' . $file;
+        if (strpos($className, 'Test')) {
+            include __DIR__ . '/tests/' . $file;
+        } else {
+            include __DIR__ . '/src/' . $file;
+        }
     } elseif (strpos($className, 'Buzz\\') === 0) {
         include __DIR__ . '/vendor/buzz/lib/' . $file;
     } elseif (strpos($className, 'Guzzle\\') === 0) {
